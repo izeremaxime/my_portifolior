@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<%- include('partials/head') %>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <%- include('partials/loader') %>
+  <%- include('partials/cursor') %>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <%- include('partials/nav') %>
+
+  <main id="main-content">
+    <%- include('partials/hero') %>
+    <%- include('partials/intro') %>
+    <%- include('partials/journey') %>
+    <%- include('partials/projects') %>
+    <%- include('partials/more-projects') %>
+    <%- include('partials/skills') %>
+    <%- include('partials/certifications') %>
+    <%- include('partials/services') %>
+    <%- include('partials/experience') %>
+    <%- include('partials/dev-terminal') %>
+    <%- include('partials/contact') %>
+  </main>
+
+  <%- include('partials/footer') %>
+  <%- include('partials/modals') %>
+
+  <script src="/vendor/gsap/gsap.min.js"></script>
+  <script src="/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="/js/cursor.js" defer></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/animations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#3d7bff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#05070d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5b9dff"/>
+      <stop offset="100%" stop-color="#5d86d7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#05070d"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <text x="90" y="290" font-family="JetBrains Mono, monospace" font-size="64" font-weight="700" fill="url(#txt)">&lt;M/&gt;</text>
+  <text x="90" y="380" font-family="Montserrat, Arial, sans-serif" font-size="56" font-weight="800" fill="#f5f7fb">MAXIME</text>
+  <text x="90" y="430" font-family="Quicksand, Arial, sans-serif" font-size="28" fill="#9aa7bd">Software Engineer &amp; Full-Stack Developer</text>
+  <text x="90" y="480" font-family="JetBrains Mono, monospace" font-size="20" fill="#5d86d7">Learn. Build. Solve. Evolve.</text>
+</svg>

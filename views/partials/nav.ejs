@@ -1,0 +1,39 @@
+<header class="site-header">
+  <nav class="nav glass" id="site-nav" aria-label="Primary">
+    <%- include('logo', { compact: false }) %>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link" data-nav-link>Home</a></li>
+      <li><a href="#about" class="nav-link" data-nav-link>About</a></li>
+      <li><a href="#projects" class="nav-link" data-nav-link>Projects</a></li>
+      <li><a href="#skills" class="nav-link" data-nav-link>Skills</a></li>
+      <li><a href="#contact" class="nav-link" data-nav-link>Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="btn btn-primary btn-sm nav-cta">Let's Talk</a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      id="nav-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" data-state="closed">
+    <ul class="mobile-menu-links">
+      <li><a href="#home" class="mobile-nav-link" data-nav-link>Home</a></li>
+      <li><a href="#about" class="mobile-nav-link" data-nav-link>About</a></li>
+      <li><a href="#projects" class="mobile-nav-link" data-nav-link>Projects</a></li>
+      <li><a href="#skills" class="mobile-nav-link" data-nav-link>Skills</a></li>
+      <li><a href="#contact" class="mobile-nav-link" data-nav-link>Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary mobile-menu-cta" data-nav-link>Let's Talk</a>
+  </div>
+</header>

@@ -1,0 +1,67 @@
+<section class="section contact" id="contact">
+  <div class="glow-orb glow-orb--primary" style="width:400px;height:400px;bottom:-120px;left:10%;"></div>
+
+  <div class="container section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Let's build <span class="accent">something.</span></h2>
+      <p class="section-sub">Have an idea, a project, or an opportunity? Let's turn it into something real.</p>
+    </div>
+
+    <div class="contact-layout">
+      <form class="contact-form glass" id="contact-form" novalidate>
+        <div class="form-row">
+          <label for="contact-name">Name</label>
+          <input type="text" id="contact-name" name="name" autocomplete="name" required minlength="2" maxlength="120" />
+          <span class="form-error" data-error-for="name"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="contact-email">Email</label>
+          <input type="email" id="contact-email" name="email" autocomplete="email" required maxlength="254" />
+          <span class="form-error" data-error-for="email"></span>
+        </div>
+
+        <div class="form-row">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="5" required minlength="10" maxlength="5000"></textarea>
+          <span class="form-error" data-error-for="message"></span>
+        </div>
+
+        <!-- Honeypot field — kept hidden from real users via CSS -->
+        <div class="form-row form-row--hidden" aria-hidden="true">
+          <label for="contact-website">Website</label>
+          <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button type="submit" class="btn btn-primary contact-submit" data-magnetic>
+          <span class="btn-label">Send Message</span>
+        </button>
+
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="contact-side">
+        <p class="contact-side-text">
+          I'm currently open to internships, freelance work and collaborations
+          where I can build something real.
+        </p>
+
+        <ul class="contact-direct" data-reveal>
+          <li class="contact-direct-item">
+            <span class="contact-direct-label">Email</span>
+            <a class="contact-direct-link" href="mailto:izeremaxime1@gmail.com" data-magnetic>izeremaxime1@gmail.com</a>
+          </li>
+          <li class="contact-direct-item">
+            <span class="contact-direct-label">Phone</span>
+            <a class="contact-direct-link" href="tel:+250791264400" data-magnetic>+250 791 264 400</a>
+          </li>
+        </ul>
+
+        <div class="contact-social" id="contact-social">
+          <!-- Social links are added here only once real URLs are provided. -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
