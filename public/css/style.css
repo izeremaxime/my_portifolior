@@ -1,9 +1,4 @@
-/* ==========================================================================
-   Maxime — Portfolio Design System
-   ========================================================================== */
-
 :root {
-  /* Color system */
   --bg: #05070d;
   --bg-alt: #0a0e1a;
   --bg-panel: #0d1220;
@@ -24,7 +19,6 @@
   --success: #4ade80;
   --danger: #f87171;
 
-  /* Typography */
   --font-heading: 'Montserrat', 'Segoe UI', Arial, sans-serif;
   --font-body: 'Quicksand', 'Segoe UI', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
@@ -39,7 +33,6 @@
   --fs-3xl: 4.2rem;
   --fs-hero: clamp(2.8rem, 9vw, 7rem);
 
-  /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.75rem;
@@ -47,14 +40,12 @@
   --space-xl: 5rem;
   --space-2xl: 8rem;
 
-  /* Layout */
   --max-width: 1280px;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
   --radius-pill: 999px;
 
-  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 0.25s;
@@ -63,10 +54,6 @@
 
   --nav-height: 78px;
 }
-
-/* ==========================================================================
-   Reset
-   ========================================================================== */
 
 *,
 *::before,
@@ -140,7 +127,6 @@ p {
   color: var(--bg);
 }
 
-/* Focus visibility for keyboard nav */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -150,10 +136,6 @@ textarea:focus-visible,
   outline-offset: 3px;
   border-radius: 4px;
 }
-
-/* ==========================================================================
-   Layout helpers
-   ========================================================================== */
 
 .container {
   width: 100%;
@@ -243,10 +225,6 @@ textarea:focus-visible,
   top: 1rem;
 }
 
-/* ==========================================================================
-   Backgrounds — grid + glow
-   ========================================================================== */
-
 .grid-bg {
   position: fixed;
   inset: 0;
@@ -276,10 +254,6 @@ textarea:focus-visible,
   background: radial-gradient(circle, rgba(93, 134, 215, 0.35), transparent 70%);
 }
 
-/* ==========================================================================
-   Glass / panel utilities
-   ========================================================================== */
-
 .glass {
   background: linear-gradient(160deg, rgba(16, 23, 40, 0.75), rgba(10, 14, 26, 0.6));
   backdrop-filter: blur(18px);
@@ -306,10 +280,6 @@ textarea:focus-visible,
   background: rgba(61, 123, 255, 0.08);
   color: var(--secondary);
 }
-
-/* ==========================================================================
-   Buttons
-   ========================================================================== */
 
 .btn {
   position: relative;
@@ -359,10 +329,6 @@ textarea:focus-visible,
   font-size: var(--fs-xs);
 }
 
-/* ==========================================================================
-   Reduced motion — global guard
-   ========================================================================== */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -377,15 +343,6 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
-
-/* JS sets this class when the media query is reduce, for GSAP conditional logic */
-.reduce-motion .parallax-layer {
-  transform: none !important;
-}
-
-/* ==========================================================================
-   Brand mark / logo
-   ========================================================================== */
 
 .brand {
   display: inline-flex;
@@ -437,10 +394,6 @@ textarea:focus-visible,
   color: var(--gray);
 }
 
-/* ==========================================================================
-   Nav
-   ========================================================================== */
-
 .site-header {
   position: fixed;
   top: 0;
@@ -463,9 +416,7 @@ textarea:focus-visible,
   border-radius: var(--radius-pill);
   box-shadow: 0 10px 40px -18px rgba(0, 0, 0, 0.7);
   transition: padding var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), width var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
-  /* Visible by default (progressive enhancement) — JS applies the
-     pre-animation hidden state inline only once GSAP has confirmed it can
-     run the entrance tween. See animations.js runLoader(). */
+
   opacity: 1;
   transform: none;
 }
@@ -611,10 +562,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Loader
-   ========================================================================== */
-
 .loader {
   position: fixed;
   inset: 0;
@@ -665,10 +612,6 @@ textarea:focus-visible,
   visibility: hidden;
 }
 
-/* ==========================================================================
-   Custom cursor (desktop only — enabled via JS feature detection)
-   ========================================================================== */
-
 .cursor-dot,
 .cursor-ring {
   position: fixed;
@@ -712,10 +655,6 @@ textarea:focus-visible,
   border-color: var(--primary-bright);
   background: rgba(61, 123, 255, 0.1);
 }
-
-/* ==========================================================================
-   Hero
-   ========================================================================== */
 
 .hero {
   position: relative;
@@ -919,10 +858,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Intro / narrative steps
-   ========================================================================== */
-
 .intro-steps {
   counter-reset: step;
   border-top: 1px solid var(--border-soft);
@@ -967,10 +902,6 @@ textarea:focus-visible,
 .intro-step.is-active .intro-step-text {
   color: var(--white);
 }
-
-/* ==========================================================================
-   Technical journey timeline
-   ========================================================================== */
 
 .timeline {
   position: relative;
@@ -1044,10 +975,6 @@ textarea:focus-visible,
   font-size: var(--fs-sm);
 }
 
-/* ==========================================================================
-   Projects
-   ========================================================================== */
-
 .project-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1096,7 +1023,6 @@ textarea:focus-visible,
   border-bottom: 1px solid var(--border-soft);
 }
 
-/* -- Grite SMS dashboard mock -- */
 .mock-dashboard {
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -1174,7 +1100,6 @@ textarea:focus-visible,
   opacity: 0.8;
 }
 
-/* -- TouchTech Hub store mock -- */
 .mock-store {
   padding: 1rem;
   display: flex;
@@ -1209,7 +1134,6 @@ textarea:focus-visible,
   width: 40%;
 }
 
-/* -- ZUM quiz mock -- */
 .mock-quiz {
   padding: 1rem;
   display: flex;
@@ -1245,7 +1169,6 @@ textarea:focus-visible,
   border-top-color: var(--primary-bright);
 }
 
-/* -- TrendSpark concept mock -- */
 .mock-concept {
   min-height: 160px;
   display: flex;
@@ -1335,11 +1258,14 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Project modals
-   ========================================================================== */
+html.modal-open-lock {
+  overflow: hidden;
+}
 
 .project-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   background: var(--bg-panel);
@@ -1430,10 +1356,6 @@ textarea:focus-visible,
   margin-top: var(--space-md);
 }
 
-/* ==========================================================================
-   More projects (secondary weight)
-   ========================================================================== */
-
 .more-projects-group {
   margin-top: var(--space-lg);
 }
@@ -1498,10 +1420,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Skills — technology ecosystem
-   ========================================================================== */
-
 .skills-groups {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1564,10 +1482,6 @@ textarea:focus-visible,
     grid-template-columns: 1fr;
   }
 }
-
-/* ==========================================================================
-   Certifications
-   ========================================================================== */
 
 .cert-grid {
   display: grid;
@@ -1644,10 +1558,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Services
-   ========================================================================== */
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1705,10 +1615,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Experience
-   ========================================================================== */
-
 .experience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1745,10 +1651,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Developer terminal section
-   ========================================================================== */
-
 .dev-terminal {
   margin-top: var(--space-lg);
   overflow: hidden;
@@ -1763,10 +1665,6 @@ textarea:focus-visible,
 .dev-terminal-body .term-ok {
   color: var(--success);
 }
-
-/* ==========================================================================
-   Contact
-   ========================================================================== */
 
 .contact-layout {
   display: grid;
@@ -1915,10 +1813,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
 .site-footer {
   border-top: 1px solid var(--border-soft);
   padding: var(--space-lg) 0 var(--space-md);
@@ -1979,10 +1873,6 @@ textarea:focus-visible,
   }
 }
 
-/* ==========================================================================
-   404
-   ========================================================================== */
-
 .not-found {
   min-height: 100vh;
   display: flex;
@@ -2006,10 +1896,6 @@ textarea:focus-visible,
   color: var(--gray);
   max-width: 40ch;
 }
-
-/* ==========================================================================
-   Responsive polish — tablet / mobile
-   ========================================================================== */
 
 @media (max-width: 980px) {
   :root {

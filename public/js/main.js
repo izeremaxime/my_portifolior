@@ -7,15 +7,6 @@
   }
   window.__reduceMotion = prefersReducedMotion;
 
-  /* ---------------------------------------------------------------------
-     Safety net: the loader overlay must never permanently block the page.
-     gsap.min.js / ScrollTrigger.min.js load via plain (non-deferred)
-     <script> tags, so by the time this deferred script runs, the browser
-     has already either loaded them or given up — window.gsap tells us
-     definitively which, no guessing/timer race needed. If it's missing,
-     drop the loader immediately (every section is visible-by-default in
-     CSS, so there's nothing to wait for).
-  --------------------------------------------------------------------- */
   function hideLoaderNow() {
     var loader = document.getElementById('site-loader');
     if (loader && !loader.classList.contains('is-hidden')) {
@@ -27,14 +18,9 @@
   if (typeof window.gsap === 'undefined') {
     hideLoaderNow();
   } else {
-    // Last-resort catch-all in case animations.js throws partway through
-    // (well past its own ~2.2s loader sequence).
     setTimeout(hideLoaderNow, 4000);
   }
 
-  /* ---------------------------------------------------------------------
-     Mobile menu
-  --------------------------------------------------------------------- */
   var navToggle = document.getElementById('nav-toggle');
   var mobileMenu = document.getElementById('mobile-menu');
 
@@ -73,9 +59,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Nav scroll state + active link tracking
-  --------------------------------------------------------------------- */
   var nav = document.getElementById('site-nav');
   var navLinks = document.querySelectorAll('.nav-link');
   var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
@@ -120,9 +103,6 @@
   updateNavScrollState();
   updateActiveLink();
 
-  /* ---------------------------------------------------------------------
-     Magnetic button hover
-  --------------------------------------------------------------------- */
   if (!prefersReducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('[data-magnetic]').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
@@ -137,9 +117,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Skills — connect/glow group on node hover
-  --------------------------------------------------------------------- */
   document.querySelectorAll('[data-skills-group]').forEach(function (group) {
     var nodes = group.querySelectorAll('[data-skill-node]');
     nodes.forEach(function (node) {
@@ -158,9 +135,6 @@
     });
   });
 
-  /* ---------------------------------------------------------------------
-     ZUM Quiz mock — rotating question preview
-  --------------------------------------------------------------------- */
   var quizQuestions = [
     'Which language runs in the browser?',
     'What does API stand for?',
@@ -180,26 +154,29 @@
     }, 3200);
   }
 
-  /* ---------------------------------------------------------------------
-     Project modals
-  --------------------------------------------------------------------- */
   var lastFocusedEl = null;
+
+  function pinScroll(scrollY) {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, scrollY);
+      });
+    });
+  }
 
   function openModal(id) {
     var modal = document.getElementById(id);
     if (!modal || typeof modal.showModal !== 'function') return;
     lastFocusedEl = document.activeElement;
+    var scrollY = window.scrollY;
+    document.documentElement.classList.add('modal-open-lock');
     modal.showModal();
-    var closeBtn = modal.querySelector('[data-modal-close]');
-    if (closeBtn) closeBtn.focus();
+    pinScroll(scrollY);
   }
 
   function closeModal(modal) {
-    if (!modal) return;
+    if (!modal || !modal.open) return;
     modal.close();
-    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
-      lastFocusedEl.focus();
-    }
   }
 
   document.querySelectorAll('[data-modal-open]').forEach(function (btn) {
@@ -209,6 +186,15 @@
   });
 
   document.querySelectorAll('.project-modal').forEach(function (modal) {
+    modal.addEventListener('close', function () {
+      var scrollY = window.scrollY;
+      document.documentElement.classList.remove('modal-open-lock');
+      pinScroll(scrollY);
+      if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+        lastFocusedEl.focus({ preventScroll: true });
+      }
+    });
+
     var closeBtn = modal.querySelector('[data-modal-close]');
     if (closeBtn) {
       closeBtn.addEventListener('click', function () {
@@ -223,10 +209,6 @@
     });
   });
 
-  /* ---------------------------------------------------------------------
-     Contact form — client-side UX validation + fetch submit
-     (server always re-validates in controllers/contactController.js)
-  --------------------------------------------------------------------- */
   var form = document.getElementById('contact-form');
   var statusEl = document.getElementById('form-status');
 
@@ -321,7 +303,6 @@
     });
   }
 
-  // Small helper polyfill for older browsers lacking Element.closest inside handlers above
   if (!Element.prototype.closest) {
     Element.prototype.closest = function (selector) {
       var el = this;

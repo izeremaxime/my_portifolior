@@ -31,7 +31,6 @@ function wantsJSON(req) {
 }
 
 exports.submitContactForm = (req, res) => {
-  // Honeypot field — bots tend to fill every input; humans never see it.
   if (sanitize(req.body.website)) {
     return res.status(200).json({ success: true, message: 'Thanks — message received.' });
   }
@@ -49,9 +48,6 @@ exports.submitContactForm = (req, res) => {
     return res.redirect('/?contact=error#contact');
   }
 
-  // No mail transport is configured yet — validated submissions are logged
-  // server-side only. Wire a real transport (see .env.example) before relying
-  // on this for production delivery.
   console.log('[contact] New submission:', {
     name,
     email,

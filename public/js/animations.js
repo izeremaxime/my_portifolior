@@ -1,10 +1,6 @@
 (function () {
   'use strict';
 
-  // Progressive enhancement: every section is visible-by-default in CSS.
-  // If GSAP fails to load for any reason (blocked script, flaky network),
-  // the page still renders fully — it just won't animate. Nothing below
-  // this guard is allowed to leave content permanently hidden.
   if (typeof gsap === 'undefined') return;
 
   var reduced = window.__reduceMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,9 +10,6 @@
     ScrollTrigger.config({ ignoreMobileResize: true });
   }
 
-  /* ---------------------------------------------------------------------
-     Typing-effect engine (used by hero + dev terminal)
-  --------------------------------------------------------------------- */
   function typeLines(el, lines, opts) {
     opts = opts || {};
     var loop = !!opts.loop;
@@ -88,12 +81,6 @@
     };
   }
 
-  /* ---------------------------------------------------------------------
-     Loading sequence → nav entrance → hero reveal
-     All sections are visible by default in CSS; here we explicitly set
-     the pre-animation "hidden" state via gsap.set() right before we
-     animate out of it — only ever reachable once GSAP has loaded.
-  --------------------------------------------------------------------- */
   function runLoader() {
     var loader = document.getElementById('site-loader');
     var nav = document.getElementById('site-nav');
@@ -122,9 +109,6 @@
       .to(loader, { opacity: 0, duration: 0.45, delay: 0.15 });
   }
 
-  /* ---------------------------------------------------------------------
-     Hero reveal + letter stagger + terminal typing + parallax
-  --------------------------------------------------------------------- */
   function revealHero() {
     var titleLine = document.querySelector('[data-hero-stagger]');
     if (titleLine) {
@@ -152,11 +136,6 @@
         .from('.hero-ctas', { opacity: 0, y: 16, duration: 0.5 }, '-=0.3')
         .from('.hero-visual', { opacity: 0, scale: 0.92, duration: 0.7 }, '-=0.5')
         .to('.floating-chip', { opacity: 1, duration: 0.5, stagger: 0.12 }, '-=0.3');
-
-      gsap.to('.floating-chip--1', { y: -14, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-      gsap.to('.floating-chip--2', { y: 12, duration: 3.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.3 });
-      gsap.to('.floating-chip--3', { y: -10, duration: 2.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.6 });
-      gsap.to('.floating-chip--4', { y: 14, duration: 3.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 0.2 });
     }
 
     typeLines(
@@ -175,26 +154,10 @@
       ],
       { loop: true, restartDelay: 2600 }
     );
-
-    // Mouse parallax
-    if (!reduced && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      var visual = document.querySelector('[data-parallax]');
-      if (visual) {
-        document.querySelector('.hero').addEventListener('mousemove', function (e) {
-          var rect = document.querySelector('.hero').getBoundingClientRect();
-          var relX = (e.clientX - rect.left) / rect.width - 0.5;
-          var relY = (e.clientY - rect.top) / rect.height - 0.5;
-          gsap.to(visual, { x: relX * 24, y: relY * 18, duration: 0.6, ease: 'power2.out' });
-        });
-      }
-    }
   }
 
   runLoader();
 
-  /* ---------------------------------------------------------------------
-     ScrollTrigger reveals — everything below the fold
-  --------------------------------------------------------------------- */
   if (!window.ScrollTrigger || reduced) return;
 
   function batchReveal(selector, fromVars, staggerAmount) {
@@ -222,7 +185,6 @@
     });
   }
 
-  // Intro steps — activate as each crosses the viewport center
   gsap.utils.toArray('[data-intro-step]').forEach(function (step) {
     ScrollTrigger.create({
       trigger: step,
@@ -243,7 +205,6 @@
     });
   });
 
-  // Technical journey timeline
   gsap.utils.toArray('[data-timeline-item]').forEach(function (item) {
     gsap.set(item, { opacity: 0, y: 30 });
     ScrollTrigger.create({
@@ -275,13 +236,10 @@
     });
   }
 
-  // Project cards, more-project cards, cert cards, service cards, experience cards
   batchReveal('[data-reveal]', { opacity: 0, y: 26 }, 0.08);
 
-  // Skills groups
   batchReveal('[data-skills-group]', { opacity: 0, y: 24 }, 0.1);
 
-  // Dev terminal reveal + typing on scroll-in
   var devTerminal = document.querySelector('.dev-terminal');
   if (devTerminal) {
     gsap.set(devTerminal, { opacity: 0, y: 30 });
@@ -317,7 +275,6 @@
     });
   }
 
-  // Contact form reveal
   var contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     gsap.set(contactForm, { opacity: 0, y: 30 });
@@ -330,7 +287,6 @@
     });
   }
 
-  // Section heads — subtle fade/slide-in for eyebrow + title on every section
   gsap.utils.toArray('.section-head').forEach(function (head) {
     gsap.from(head, {
       opacity: 0,
